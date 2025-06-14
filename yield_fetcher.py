@@ -45,11 +45,11 @@ df = df.sort_values("Date")
 # 保存
 df.to_csv(CSV_FILE, index=False)
 
-# 直近1ヶ月のデータ抽出
+# 直近1ヶ月のデータを抽出してコピー
 one_month_ago = today - timedelta(days=30)
-df_recent = df[df['Date'] >= one_month_ago]
+df_recent = df[df['Date'] >= one_month_ago].copy()
 
-# 日付列を明示的にdatetime型に変換
+# 日付と利回りを明示的に正しい型に変換
 df_recent['Date'] = pd.to_datetime(df_recent['Date'])
 
 # プロット
