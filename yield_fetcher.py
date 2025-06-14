@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 from datetime import datetime
+from datetime import timedelta
 
 # Yahoo Financeの10年国債利回りのティッカー
 TICKER = "^TNX"
@@ -44,13 +45,18 @@ df = df.sort_values("Date")
 df.to_csv(CSV_FILE, index=False)
 
 # プロット
+today = datetime.today()
+one_month_ago = today - timedelta(days=30)
+
+df_recent = df[df['Date'] >= one_month_ago]
+
 plt.figure(figsize=(10, 5))
-plt.plot(df['Date'], df['Yield'], label='10Y US Treasury Yield', color='blue')
+plt.plot(df_recent['Date'], df_recent['Yield'], label='10Y US Treasury Yield (Last 1 Month)', color='blue')
 plt.xlabel('Date')
 plt.ylabel('Yield (%)')
-plt.title('10-Year US Treasury Yield Over Time')
+plt.title('10-Year US Treasury Yield - Last 1 Month')
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
-plt.savefig(PLOT_FILE)
+plt.savefig('yield_plot_last_1month.png')
 print(f"Saved plot to {PLOT_FILE}")
