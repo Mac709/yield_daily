@@ -51,6 +51,7 @@ df_recent = df[df['Date'] >= one_month_ago].copy()
 
 # 日付と利回りを明示的に正しい型に変換
 df_recent['Date'] = pd.to_datetime(df_recent['Date'])
+df_recent['Yield'] = pd.to_numeric(df_recent['Yield'], errors='coerce')
 
 # プロット
 plt.figure(figsize=(10, 5))
