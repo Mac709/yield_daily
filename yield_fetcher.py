@@ -15,7 +15,7 @@ PLOT_FILE = "yield_plot.png"
 # データ取得（当日分）
 today = datetime.today()
 today_str = today.strftime('%Y-%m-%d')
-data = yf.download(TICKER, start=today_str, end=today_str)
+data = yf.download(TICKER, start=today_str, end=today_str, auto_adjust=False)
 
 if data.empty:
     print("No data available for today.")
