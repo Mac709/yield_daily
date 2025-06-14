@@ -25,11 +25,12 @@ jobs:
       run: python yield_fetcher.py
 
     - name: Commit and push CSV
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add yield_history.csv
-        git commit -m "Update yield history"
-        git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git add yield_history.csv
+        git commit -m "Update yield history" || echo "No changes"
+        git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+        git push origin main
