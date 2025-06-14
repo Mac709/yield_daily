@@ -30,7 +30,11 @@ jobs:
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
+
+          git pull --rebase origin main  # 先にGitHub側の変更を取り込む
+
           git add yield_history.csv
           git commit -m "Update yield history" || echo "No changes to commit"
+          
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git push origin main
