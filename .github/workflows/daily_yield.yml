@@ -29,17 +29,17 @@ jobs:
     - name: Commit and push CSV
       env:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  run: |
-    git config --global user.email "action@github.com"
-    git config --global user.name "GitHub Action"
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
 
-    # ① 最初に pull して最新取得
-    git pull --rebase origin main || echo "Nothing to rebase"
+        # ① 最初に pull して最新取得
+        git pull --rebase origin main || echo "Nothing to rebase"
 
-    # ② 変更ファイルをステージしてコミット
-    git add yield_history.csv yield_plot.png
-    git commit -m "Update yield data" || echo "No changes to commit"
+        # ② 変更ファイルをステージしてコミット
+        git add yield_history.csv yield_plot.png
+        git commit -m "Update yield data" || echo "No changes to commit"
 
-    # ③ push
-    git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
-    git push origin main
+        # ③ push
+        git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+        git push origin main
