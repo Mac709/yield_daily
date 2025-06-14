@@ -33,8 +33,10 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
 
-        git pull --rebase origin main  # ← GitHub上の変更を先に統合
+        # ① pull --rebase を commit の前に実行！！
+        git pull --rebase origin main
 
+        # ② その後 add & commit
         git add yield_history.csv
         git commit -m "Update yield history" || echo "No changes to commit"
 
