@@ -1,0 +1,33 @@
+name: Fetch 10-Year Treasury Yield Daily
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # 毎日21時（UTC 12時 = 日本時間21時）
+  workflow_dispatch:     # 手動実行も可能
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install yfinance pandas
+
+    - name: Run fetcher script
+      run: python yield_fetcher.py
+
+    - name: Commit and push CSV
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add yield_history.csv
+        git commit -m "Update yield history"
+        git push
