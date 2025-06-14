@@ -31,3 +31,5 @@ jobs:
         git add yield_history.csv
         git commit -m "Update yield history"
         git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
