@@ -33,12 +33,12 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
 
-        # ① pull --rebase を commit の前に実行！！
+        # 変更を先にステージ
+        git add yield_history.csv yield_plot.png
+
+        # その後にpull（競合を避ける）
         git pull --rebase origin main
 
-        # ② その後 add & commit
-        git add yield_history.csv
-        git commit -m "Update yield history" || echo "No changes to commit"
-
+        git commit -m "Update yield data" || echo "No changes"
         git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
         git push origin main
