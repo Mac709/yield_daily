@@ -49,6 +49,9 @@ df.to_csv(CSV_FILE, index=False)
 one_month_ago = today - timedelta(days=30)
 df_recent = df[df['Date'] >= one_month_ago]
 
+# 日付列を明示的にdatetime型に変換
+df_recent['Date'] = pd.to_datetime(df_recent['Date'])
+
 # プロット
 plt.figure(figsize=(10, 5))
 plt.plot(df_recent['Date'], df_recent['Yield'], label='10Y US Treasury Yield (Last 1 Month)', color='blue')
