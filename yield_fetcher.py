@@ -15,6 +15,7 @@ PLOT_FILE = "yield_plot.png"
 # データ取得（当日分）
 today = datetime.today()
 today_str = today.strftime('%Y-%m-%d')
+
 data = yf.download(TICKER, start=today_str, end=today_str, auto_adjust=False)
 
 if data.empty:
@@ -22,7 +23,7 @@ if data.empty:
     exit()
 
 # 利回りの終値を取得（%表記に変換、^TNXは0.1%単位なので10で割る）
-yield_today = data['Close'].iloc[-1] / 10
+yield_today = float(data['Close'].iloc[-1]) / 10
 
 # データをDataFrameに整形
 new_entry = pd.DataFrame({
