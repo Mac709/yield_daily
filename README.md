@@ -2,7 +2,7 @@
 
 A Python-based automated system that fetches, stores, and tracks the daily US 10-Year Treasury Yield from Yahoo Finance using GitHub Actions.
 
-![yield-graph](./images/sample_graph.png) <!-- ※画像があれば表示されます -->
+![yield-graph](./yield_plot.png) <!-- ※画像があれば表示されます -->
 
 ---
 
