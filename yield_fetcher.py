@@ -63,7 +63,7 @@ plt.plot(df_recent['Date'], df_recent['Yield'], label='10Y US Treasury Yield (La
 plt.xlim(one_month_ago, today)
 
 # 日付表示の調整
-plt.gca().xaxis.set_major_locator(mdates.WeekdayLocator(interval=3))  # 3日おきに目盛り
+plt.gca().xaxis.set_major_locator()
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
 
 plt.xlabel('Date')
