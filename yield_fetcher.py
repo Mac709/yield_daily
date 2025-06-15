@@ -30,6 +30,7 @@ new_entry = pd.DataFrame({
     "Date": [today],
     "Yield": [yield_today]
 })
+print(type(yield_today), yield_today)
 
 # 既存の履歴を読み込む（あれば）
 if os.path.exists(CSV_FILE):
