@@ -14,7 +14,8 @@ PLOT_FILE = "yield_plot.png"
 
 # データ取得（当日分）
 today = datetime.today()
-today_str = today.strftime('%Y-%m-%d')
+yesterday = today - timedelta(days=1)
+today_str = yesterday.strftime('%Y-%m-%d')
 
 data = yf.download(TICKER, start=today_str, end=today_str, auto_adjust=False)
 
