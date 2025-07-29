@@ -48,10 +48,10 @@ This app automatically fetches the **10-Year US Treasury yield** every day from 
 
 ## 🕐 Schedule
 
-- Runs **daily at 9 PM JST (12 PM UTC)**
+- Runs **daily at 7:30 PM JST (12 PM UTC)**
 - Managed via GitHub Actions' cron scheduler
 
 ```yaml
 on:
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '30 22 * * *'
